@@ -60,3 +60,161 @@ Donation.html
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+script.js
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("donationForm");
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const header = document.getElementById("formHeader");
+  header.style.textAlign = "center";
+  header.style.color = "#4CAF50";
+  header.style.fontFamily = "Arial, sans-serif";
+  header.style.marginTop = "30px";
+  header.style.marginBottom = "20px";
+  header.style.fontSize = "2em";
+
+  )
+});
+
+  form.style.maxWidth = "500px";
+  form.style.margin = "30px auto";
+  form.style.padding = "20px";
+  form.style.border = "2px solid #4CAF50";
+  form.style.borderRadius = "10px";
+  form.style.backgroundColor = "#f9f9f9";
+  form.style.fontFamily = "Arial, sans-serif";
+
+  const labels = form.querySelectorAll("label");
+  labels.forEach(label => {
+    label.style.display = "block";
+    label.style.marginBottom = "10px";
+    label.style.color = "#333";
+  });
+
+  const inputs = form.querySelectorAll("input, select");
+  inputs.forEach(input => {
+    input.style.width = "100%";
+    input.style.padding = "8px";
+    input.style.marginTop = "5px";
+    input.style.marginBottom = "15px";
+    input.style.border = "1px solid #ccc";
+    input.style.borderRadius = "4px";
+  });
+
+  const errors = form.querySelectorAll(".error");
+  errors.forEach(error => {
+    error.style.color = "red";
+    error.style.fontSize = "0.85em";
+    error.style.marginBottom = "10px";
+  });
+
+  const button = form.querySelector("button");
+  button.style.backgroundColor = "#4CAF50";
+  button.style.color = "white";
+  button.style.padding = "10px 20px";
+  button.style.border = "none";
+  button.style.borderRadius = "5px";
+  button.style.cursor = "pointer";
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = "#45a049";
+  });
+  button.addEventListener("mouseout", () => {
+    button.style.backgroundColor = "#4CAF50";
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    function showError(id, message) {
+      const errorEl = document.getElementById(id + "Error");
+      if (errorEl) {
+        errorEl.textContent = message;
+      }
+      isValid = false;
+    }
+
+    function clearError(id) {
+      const errorEl = document.getElementById(id + "Error");
+      if (errorEl) {
+        errorEl.textContent = "";
+      }
+    }
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const address1 = document.getElementById("address1").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const zip = document.getElementById("zip").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const state = document.getElementById("state").value;
+    const country = document.getElementById("country").value;
+    const donationRadios = document.getElementsByName("donation");
+
+    ["firstName", "lastName", "address1", "city", "zip", "email", "state", "country"].forEach(clearError);
+    clearError("donation");
+
+    if (firstName === "") showError("firstName", "First Name is required.");
+    if (lastName === "") showError("lastName", "Last Name is required.");
+    if (address1 === "") showError("address1", "Address is required.");
+    if (city === "") showError("city", "City is required.");
+    if (state === "") showError("state", "Please select a state.");
+    if (country === "") showError("country", "Please select a country.");
+    if (!/^\d{5}$/.test(zip)) showError("zip", "Enter a valid 5-digit Zip Code.");
+    if (email === "") {
+      showError("email", "Email is required.");
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      showError("email", "Enter a valid email address.");
+    }
+
+    let donationSelected = false;
+    for (let i = 0; i < donationRadios.length; i++) {
+      if (donationRadios[i].checked) {
+        donationSelected = true;
+        break;
+      }
+    }
+    if (!donationSelected) showError("donation", "Please select a donation amount.");
+
+    if (isValid) {
+      window.location.href = "thankyou.html";
+    }
+  });
+});
+
+
+
+
+thankyou.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #9ac919;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      color: #122ecc;
+    }
+    p {
+      font-size: 1.2em;
+      color: #e00f0f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thank You for Your Donation!</h1>
+  <p>This will make changes.</p>
+</body>
+</html>
