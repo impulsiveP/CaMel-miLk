@@ -1,0 +1,62 @@
+Donation.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donation Form</title>
+</head>
+<body>
+    <h1 id="formHeader">Donation Form</h1>
+  <form id="donationForm">
+    <label>First Name: <input type="text" id="firstName" /></label>
+    <div id="firstNameError" class="error"></div>
+
+    <label>Last Name: <input type="text" id="lastName" /></label>
+    <div id="lastNameError" class="error"></div>
+
+    <label>Address: <input type="text" id="address1" /></label>
+    <div id="address1Error" class="error"></div>
+
+    <label>City: <input type="text" id="city" /></label>
+    <div id="cityError" class="error"></div>
+
+    <label>State:
+      <select id="state">
+        <option value="">Select</option>
+        <option value="Bk">Brooklyn</option>
+        <option value="AL">Allabama</option>
+        <option value="NJ">New Jercy</option>
+      </select>
+    </label>
+    <div id="stateError" class="error"></div>
+
+    <label>Country:
+      <select id="country">
+        <option value="">Select</option>
+        <option value="Uk">United Kingdom</option>
+        <option value="BD">Bangladesh</option>
+      </select>
+    </label>
+    <div id="countryError" class="error"></div>
+
+    <label>Zip Code: <input type="text" id="zip" /></label>
+    <div id="zipError" class="error"></div>
+
+    <label>Email: <input type="text" id="email" /></label>
+    <div id="emailError" class="error"></div>
+
+    <fieldset>
+      <legend>Donation Amount:</legend>
+      <label><input type="radio" name="donation" value="10" /> $100</label>
+      <label><input type="radio" name="donation" value="25" /> $250</label>
+      <label><input type="radio" name="donation" value="50" /> $500</label>
+      <div id="donationError" class="error"></div>
+    </fieldset>
+
+    <button type="submit">Donate</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
